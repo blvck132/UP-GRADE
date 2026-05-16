@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UP-GRADE Portal - Code Documentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    header {
+      text-align: center;
+      border-bottom: 3px solid #1a4a2e;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      color: #1a4a2e;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 1.1em;
+    }
+    
+    .toc {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #c8922a;
+    }
+    
+    .toc h3 {
+      color: #1a4a2e;
+      margin-bottom: 15px;
+    }
+    
+    .toc ul {
+      list-style: none;
+    }
+    
+    .toc li {
+      margin: 8px 0;
+    }
+    
+    .toc a {
+      color: #1a4a2e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    
+    h2 {
+      color: #1a4a2e;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e8b84b;
+    }
+    
+    h3 {
+      color: #2a6b42;
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+    
+    h4 {
+      color: #333;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      color: #d63384;
+    }
+    
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 15px 0;
+      border-left: 4px solid #c8922a;
+    }
+    
+    .code-block code {
+      background: none;
+      color: #d4d4d4;
+      padding: 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    table th {
+      background: #1a4a2e;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+    
+    table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    
+    .feature-box {
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      border-left: 4px solid #1a4a2e;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    
+    .feature-box strong {
+      color: #1a4a2e;
+    }
+    
+    .warning-box {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-left: 4px solid #ff9800;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    .function-doc {
+      background: #f0f7ff;
+      border-left: 4px solid #1a4a2e;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    
+    .function-doc strong {
+      color: #1a4a2e;
+    }
+    
+    .function-doc code {
+      background: #e8f0ff;
+      color: #0066cc;
+    }
+    
+    .page-break {
+      page-break-after: always;
+      margin: 40px 0;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      color: #666;
+    }
+    
+    @media print {
+      body {
+        background: white;
+      }
+      .container {
+        box-shadow: none;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>UP-GRADE Student Study Portal</h1>
+      <p class="subtitle">Complete Code Documentation & Architecture Guide</p>
+      <p style="margin-top: 15px; color: #999; font-size: 0.9em;">Version 1.0 | Generated: May 2026</p>
+    </header>
+
+    <div class="toc">
+      <h3>📑 Table of Contents</h3>
+      <ul>
+        <li><a href="#overview">1. System Overview</a></li>
+        <li><a href="#architecture">2. System Architecture</a></li>
+        <li><a href="#features">3. Key Features</a></li>
+        <li><a href="#file-structure">4. File Structure</a></li>
+        <li><a href="#database">5. Database Structure</a></li>
+        <li><a href="#authentication">6. Authentication System</a></li>
+        <li><a href="#search">7. Search & Filter System</a></li>
+        <li><a href="#upload">8. Upload Management</a></li>
+        <li><a href="#preview">9. PDF Preview & Download</a></li>
+        <li><a href="#theme">10. Theme System</a></li>
+        <li><a href="#api-reference">11. API Reference</a></li>
+        <li><a href="#installation">12. Installation & Setup</a></li>
+      </ul>
+    </div>
+
+    <div id="overview">
+      <h2>1. System Overview</h2>
+      <p>
+        UP-GRADE is a web-based student study portal designed for Kenyatta University. It provides a centralized platform 
+        where students and lecturers can upload, search, and download academic materials including study notes, past papers, 
+        and course resources. The application features a modern, responsive interface with support for both light and dark modes.
+      </p>
+      
+      <h3>Primary Objectives</h3>
+      <ul>
+        <li><strong>Resource Management:</strong> Centralized storage and retrieval of academic materials</li>
+        <li><strong>User Authentication:</strong> Secure login and signup for different user roles</li>
+        <li><strong>Document Search:</strong> Advanced filtering by school, course, and unit</li>
+        <li><strong>Document Management:</strong> Upload, preview, and download capabilities</li>
+        <li><strong>User Experience:</strong> Intuitive interface with dark/light mode support</li>
+      </ul>
+
+      <h3>Target Users</h3>
+      <ul>
+        <li><strong>Students:</strong> Search and download study materials</li>
+        <li><strong>Lecturers:</strong> Upload and manage course materials</li>
+        <li><strong>Administrators:</strong> Manage system content and user permissions</li>
+      </ul>
+    </div>
+
+    <div id="architecture">
+      <h2>2. System Architecture</h2>
+      <p>
+        UP-GRADE follows a client-side architecture with localStorage-based persistence. The application is built using 
+        vanilla JavaScript, HTML5, and CSS3, without external dependencies.
+      </p>
+
+      <h3>Architecture Components</h3>
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Technology</th>
+          <th>Purpose</th>
+        </tr>
+        <tr>
+          <td><strong>Frontend</strong></td>
+          <td>HTML5, CSS3, JavaScript</td>
+          <td>User interface and interactions</td>
+        </tr>
+        <tr>
+          <td><strong>State Management</strong></td>
+          <td>localStorage API</td>
+          <td>Persistent data storage</td>
+        </tr>
+        <tr>
+          <td><strong>Authentication</strong></td>
+          <td>JavaScript (Client-side)</td>
+          <td>User login/signup validation</td>
+        </tr>
+        <tr>
+          <td><strong>File Handling</strong></td>
+          <td>FileReader API, Blob API</td>
+          <td>PDF upload, storage, and preview</td>
+        </tr>
+        <tr>
+          <td><strong>UI Framework</strong></td>
+          <td>Custom CSS System</td>
+          <td>Responsive design and theming</td>
+        </tr>
+      </table>
+
+      <h3>Data Flow</h3>
+      <p>
+        Users interact with the UI → Events trigger JavaScript functions → Functions manipulate DOM and localStorage → 
+        UI updates to reflect changes → All data persists across sessions via localStorage.
+      </p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div id="features">
+      <h2>3. Key Features</h2>
+      
+      <div class="feature-box">
+        <strong>✓ User Authentication</strong><br>
+        Sign up and login system with role-based access control (Student, Lecturer, Admin)
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ Advanced Search</strong><br>
+        Filter materials by Faculty/School, Course/Programme, and Unit/Module
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ PDF Management</strong><br>
+        Upload PDFs up to 10MB, categorize as Study Material or Past Paper
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ PDF Preview</strong><br>
+        View PDFs before downloading with full-screen modal viewer
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ Download Capability</strong><br>
+        Download PDFs directly to device with automatic naming
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ Theme Support</strong><br>
+        Dark and light modes with user preference persistence
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ Admin Panel</strong><br>
+        Manage schools, courses, units, and all uploaded documents
+      </div>
+
+      <div class="feature-box">
+        <strong>✓ Recent Activity Tracking</strong><br>
+        View recent uploads and system statistics
+      </div>
+    </div>
+
+    <div id="file-structure">
+      <h2>4. File Structure</h2>
+      
+      <div class="code-block"><code>
+project/
+├── index.html           # Main HTML structure & markup
+├── app.js              # Core JavaScript application logic
+├── styles.css          # All styling and theme definitions
+├── New folder/         # Assets folder (images)
+│   ├── A dream library...jpg
+│   ├── From lush gardens...jpg
+│   ├── k_u post-modern-library-.jpg
+│   └── _Explore sleek...jpg
+└── DOCUMENTATION.html  # This file
+      </code></div>
+
+      <h3>File Descriptions</h3>
+      <table>
+        <tr>
+          <th>File</th>
+          <th>Size</th>
+          <th>Purpose</th>
+        </tr>
+        <tr>
+          <td><code>index.html</code></td>
+          <td>~15KB</td>
+          <td>HTML structure, form markup, page templates</td>
+        </tr>
+        <tr>
+          <td><code>app.js</code></td>
+          <td>~50KB</td>
+          <td>JavaScript logic, functions, state management</td>
+        </tr>
+        <tr>
+          <td><code>styles.css</code></td>
+          <td>~40KB</td>
+          <td>All CSS styling, dark/light mode themes</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="database">
+      <h2>5. Database Structure</h2>
+      <p>
+        The application uses browser localStorage for data persistence. All data is stored as JSON strings with keys 
+        prefixed by "ev_" (EduVault). The database is seeded with sample data on first load.
+      </p>
+
+      <h3>Database Schema</h3>
+      
+      <h4>Users Table</h4>
+      <div class="code-block"><code>{
+  id: string,           // Student ID
+  name: string,         // Full name
+  email: string,        // Email address
+  password: string,     // Password (plaintext in localStorage)
+  role: string          // "student" | "lecturer" | "admin"
+}</code></div>
+
+      <h4>Documents Table</h4>
+      <div class="code-block"><code>{
+  id: string,           // Unique document ID
+  title: string,        // Document title
+  school: string,       // Faculty/School name
+  course: string,       // Course/Programme name
+  unit: string,         // Unit/Module name
+  type: string,         // "study" | "past"
+  uploadedBy: string,   // Uploader name
+  date: string,         // Upload date (YYYY-MM-DD)
+  size: string,         // File size (formatted)
+  fileName: string,     // Original file name
+  fileData: string,     // Base64 encoded PDF data
+  year: string|null     // Year (optional)
+}</code></div>
+
+      <h4>Reference Tables</h4>
+      <ul>
+        <li><code>schools</code> - Array of Faculty/School names</li>
+        <li><code>courses</code> - Object mapping schools to course arrays</li>
+        <li><code>units</code> - Object mapping courses to unit arrays</li>
+      </ul>
+
+      <h3>Storage Limits</h3>
+      <p>
+        localStorage typically supports 5-10MB per domain. With base64 encoding overhead, actual file storage capacity 
+        is approximately 3-6MB per file across all documents.
+      </p>
+
+      <div class="warning-box">
+        <strong>⚠️ Warning:</strong> localStorage is not encrypted. For production use, implement server-side storage 
+        with authentication.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div id="authentication">
+      <h2>6. Authentication System</h2>
+      
+      <h3>Login Flow</h3>
+      <p>
+        The login process validates user credentials against stored user records. Credentials are checked using simple 
+        string comparison (note: not suitable for production without encryption).
+      </p>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>attemptLogin()</code><br>
+        <strong>Purpose:</strong> Validate login credentials and authenticate user<br>
+        <strong>Parameters:</strong> None (reads from DOM elements)<br>
+        <strong>Returns:</strong> void<br>
+        <strong>Errors Handled:</strong> Empty fields, invalid credentials, non-existent user
+      </div>
+
+      <h3>Signup Flow</h3>
+      <p>
+        New users can create accounts with name, Student ID, email, and password. The system checks for duplicate 
+        Student IDs and validates email format.
+      </p>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>attemptSignup()</code><br>
+        <strong>Purpose:</strong> Create new user account<br>
+        <strong>Parameters:</strong> None (reads from DOM elements)<br>
+        <strong>Returns:</strong> void<br>
+        <strong>Validation:</strong> Name, ID, Email format, Password length (minimum 6)<br>
+        <strong>Errors Handled:</strong> Empty fields, duplicate ID, invalid email
+      </div>
+
+      <h3>Session Management</h3>
+      <ul>
+        <li><code>currentUser</code> - Global variable storing logged-in user object</li>
+        <li><code>logout()</code> - Clears session and returns to login page</li>
+        <li>Role-based UI visibility controlled via JavaScript</li>
+      </ul>
+
+      <h3>Role-Based Access</h3>
+      <table>
+        <tr>
+          <th>Role</th>
+          <th>Search</th>
+          <th>Upload</th>
+          <th>Admin</th>
+        </tr>
+        <tr>
+          <td><strong>Student</strong></td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✗</td>
+        </tr>
+        <tr>
+          <td><strong>Lecturer</strong></td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+        </tr>
+        <tr>
+          <td><strong>Admin</strong></td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="search">
+      <h2>7. Search & Filter System</h2>
+      
+      <h3>Search Process</h3>
+      <p>
+        Users select School → Course → Unit, then click "Search Materials". The system filters the documents database 
+        and displays matching results in a grid layout.
+      </p>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>searchMaterials()</code><br>
+        <strong>Purpose:</strong> Find documents matching selected criteria<br>
+        <strong>Filter Logic:</strong> Exact match on school, course, and unit<br>
+        <strong>Output:</strong> Grid of document cards with preview/download buttons
+      </div>
+
+      <h3>Cascading Selects</h3>
+      <ul>
+        <li><code>onSchoolChange()</code> - Populates course selector when school is selected</li>
+        <li><code>onCourseChange()</code> - Populates unit selector when course is selected</li>
+        <li>Empty options reset dependent selectors</li>
+      </ul>
+
+      <h3>Search Results Display</h3>
+      <p>
+        Results are displayed as document cards containing:
+      </p>
+      <ul>
+        <li>Document type badge (Study Material/Past Paper)</li>
+        <li>Document title</li>
+        <li>Unit, date, and year</li>
+        <li>File size</li>
+        <li>Preview and Download buttons</li>
+      </ul>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>clearSearch()</code><br>
+        <strong>Purpose:</strong> Reset all search filters and clear results<br>
+        <strong>Action:</strong> Resets selectors and clears results div
+      </div>
+    </div>
+
+    <div id="upload">
+      <h2>8. Upload Management</h2>
+      
+      <h3>Upload Process</h3>
+      <p>
+        Users access the Upload tab (only available for Lecturers and Admins), select a PDF file, categorize it, 
+        and provide metadata. The system validates the file and stores it as base64 in localStorage.
+      </p>
+
+      <h3>File Upload Functions</h3>
+      
+      <div class="function-doc">
+        <strong>Function:</strong> <code>handleDragOver(e)</code><br>
+        <strong>Purpose:</strong> Handle drag-over event for drop zone<br>
+        <strong>Action:</strong> Adds visual feedback to drop zone
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>handleDrop(e)</code><br>
+        <strong>Purpose:</strong> Process dropped files<br>
+        <strong>Action:</strong> Calls processFile() with dropped file
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>handleFileSelect(e)</code><br>
+        <strong>Purpose:</strong> Handle file input selection<br>
+        <strong>Action:</strong> Calls processFile() with selected file
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>processFile(file)</code><br>
+        <strong>Purpose:</strong> Validate selected file<br>
+        <strong>Validation:</strong> 
+        <ul>
+          <li>Must be PDF (application/pdf)</li>
+          <li>Maximum size: 10MB</li>
+        </ul>
+        <strong>Output:</strong> Displays file preview
+      </div>
+
+      <h3>Upload Validation</h3>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Required</th>
+          <th>Validation</th>
+        </tr>
+        <tr>
+          <td>PDF File</td>
+          <td>✓</td>
+          <td>PDF only, max 10MB</td>
+        </tr>
+        <tr>
+          <td>School</td>
+          <td>✓</td>
+          <td>Must be selected</td>
+        </tr>
+        <tr>
+          <td>Course</td>
+          <td>✓</td>
+          <td>Must be selected</td>
+        </tr>
+        <tr>
+          <td>Unit</td>
+          <td>✓</td>
+          <td>Must be selected</td>
+        </tr>
+        <tr>
+          <td>Title</td>
+          <td>✓</td>
+          <td>Cannot be empty</td>
+        </tr>
+        <tr>
+          <td>Year</td>
+          <td>✗</td>
+          <td>Optional</td>
+        </tr>
+      </table>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>uploadDocument()</code><br>
+        <strong>Purpose:</strong> Upload validated PDF to database<br>
+        <strong>Process:</strong>
+        <ol>
+          <li>Validate all required fields</li>
+          <li>Convert file to base64 using FileReader</li>
+          <li>Show progress bar during "upload" animation</li>
+          <li>Create document object and store in DB</li>
+          <li>Reset form and refresh UI</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div id="preview">
+      <h2>9. PDF Preview & Download</h2>
+      
+      <h3>Preview Modal</h3>
+      <p>
+        Users can preview documents before downloading. The preview opens in a modal window using an iframe to display PDFs.
+      </p>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>previewDoc(docId)</code><br>
+        <strong>Purpose:</strong> Open PDF preview in modal<br>
+        <strong>Process:</strong>
+        <ol>
+          <li>Fetch document from database</li>
+          <li>Set modal title to document title</li>
+          <li>Load PDF into iframe</li>
+          <li>Display modal overlay</li>
+          <li>Show success toast</li>
+        </ol>
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>closePreview()</code><br>
+        <strong>Purpose:</strong> Close preview modal<br>
+        <strong>Action:</strong> Hides modal and clears iframe
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>downloadFromPreview()</code><br>
+        <strong>Purpose:</strong> Download from preview window<br>
+        <strong>Action:</strong> Calls downloadDoc() with current preview document
+      </div>
+
+      <h3>Download Functionality</h3>
+      <p>
+        The download system handles both actual uploaded files and sample documents. For actual files, the base64 data 
+        is used directly. For sample documents, a minimal PDF is generated on-the-fly.
+      </p>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>downloadDoc(docId)</code><br>
+        <strong>Purpose:</strong> Download document to user's device<br>
+        <strong>Process:</strong>
+        <ol>
+          <li>Find document in database</li>
+          <li>If fileData exists, use it directly</li>
+          <li>If no fileData, generate sample PDF</li>
+          <li>Create blob and download link</li>
+          <li>Trigger download</li>
+          <li>Clean up object URL</li>
+        </ol>
+      </div>
+
+      <h3>Keyboard Shortcuts</h3>
+      <ul>
+        <li><strong>ESC</strong> - Close preview modal</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>⚠️ Browser Limitation:</strong> Some browsers may not fully render PDFs in iframe. 
+        Users should download files for full functionality.
+      </div>
+    </div>
+
+    <div id="theme">
+      <h2>10. Theme System</h2>
+      
+      <h3>Theme Architecture</h3>
+      <p>
+        The application supports two themes: Dark (default for app pages) and Light (for login page and optional light mode). 
+        Theme preference is stored in localStorage and persists across sessions.
+      </p>
+
+      <h3>CSS Variables</h3>
+      <p>
+        Themes are implemented using CSS custom properties (variables) defined in <code>:root</code>. The 
+        <code>body.dark-mode</code> and <code>body.app-light</code> classes override these variables.
+      </p>
+
+      <div class="code-block"><code>/* Light Theme (Default) */
+:root {
+  --ink: #0d0d0d;           /* Text color */
+  --paper: #f5f0e8;         /* Background */
+  --cream: #ece6d8;         /* Secondary bg */
+  --gold: #c8922a;          /* Accent */
+  --gold-light: #e8b84b;    /* Light accent */
+  --rust: #b84c1e;          /* Error color */
+  --forest: #1a4a2e;        /* Primary (green) */
+  --forest-light: #2a6b42;  /* Light primary */
+}
+
+/* Dark Theme */
+body.dark-mode {
+  --ink: #f5f0e8;           /* Light text */
+  --paper: #1a1a2e;         /* Dark bg */
+  --cream: #2a2a3e;         /* Secondary dark bg */
+  --forest: #5a9e6f;        /* Brighter green */
+}
+      </code></div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>toggleTheme()</code><br>
+        <strong>Purpose:</strong> Switch between light and dark modes<br>
+        <strong>Process:</strong>
+        <ol>
+          <li>Determine current theme</li>
+          <li>Switch to opposite theme</li>
+          <li>Apply theme to DOM</li>
+          <li>Save preference to localStorage</li>
+          <li>Update button label</li>
+        </ol>
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>initializeTheme()</code><br>
+        <strong>Purpose:</strong> Load theme on page load<br>
+        <strong>Action:</strong> Retrieves saved theme preference and applies it
+      </div>
+
+      <h3>Theme Button</h3>
+      <ul>
+        <li>Located in navbar after login</li>
+        <li>Shows "Light Mode" in dark theme (moon icon)</li>
+        <li>Shows "Dark Mode" in light theme (sun icon)</li>
+        <li>Tooltip provides additional context</li>
+      </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div id="api-reference">
+      <h2>11. API Reference</h2>
+      
+      <h3>Database Functions</h3>
+
+      <div class="function-doc">
+        <strong>Object:</strong> <code>DB</code><br>
+        <strong>Purpose:</strong> localStorage wrapper for data access<br>
+        <strong>Methods:</strong>
+        <ul>
+          <li><code>DB.get(key)</code> - Retrieve value, returns null if not found</li>
+          <li><code>DB.set(key, val)</code> - Store value as JSON string</li>
+        </ul>
+      </div>
+
+      <h3>Core Functions</h3>
+
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Parameters</th>
+          <th>Returns</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>seedDB()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Initialize database with sample data</td>
+        </tr>
+        <tr>
+          <td><code>attemptLogin()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Validate and process user login</td>
+        </tr>
+        <tr>
+          <td><code>attemptSignup()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Create new user account</td>
+        </tr>
+        <tr>
+          <td><code>logout()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Clear session and return to login</td>
+        </tr>
+        <tr>
+          <td><code>switchTab(tabId, btn)</code></td>
+          <td>string, Element</td>
+          <td>void</td>
+          <td>Switch between app tabs</td>
+        </tr>
+        <tr>
+          <td><code>searchMaterials()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Search for documents</td>
+        </tr>
+        <tr>
+          <td><code>uploadDocument()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Upload PDF to system</td>
+        </tr>
+        <tr>
+          <td><code>downloadDoc(docId)</code></td>
+          <td>string</td>
+          <td>void</td>
+          <td>Download document</td>
+        </tr>
+        <tr>
+          <td><code>previewDoc(docId)</code></td>
+          <td>string</td>
+          <td>void</td>
+          <td>Open preview modal</td>
+        </tr>
+        <tr>
+          <td><code>toggleTheme()</code></td>
+          <td>None</td>
+          <td>void</td>
+          <td>Switch themes</td>
+        </tr>
+      </table>
+
+      <h3>Helper Functions</h3>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>showToast(message, type)</code><br>
+        <strong>Purpose:</strong> Display notification message<br>
+        <strong>Parameters:</strong>
+        <ul>
+          <li><code>message</code> - Notification text</li>
+          <li><code>type</code> - "success", "error", or empty for default</li>
+        </ul>
+      </div>
+
+      <div class="function-doc">
+        <strong>Function:</strong> <code>formatSize(bytes)</code><br>
+        <strong>Purpose:</strong> Convert bytes to human-readable format<br>
+        <strong>Returns:</strong> Formatted string (e.g., "2.4 MB")
+      </div>
+    </div>
+
+    <div id="installation">
+      <h2>12. Installation & Setup</h2>
+      
+      <h3>System Requirements</h3>
+      <ul>
+        <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+        <li>JavaScript enabled</li>
+        <li>localStorage support (all modern browsers)</li>
+      </ul>
+
+      <h3>Installation Steps</h3>
+      <ol>
+        <li>Place all files in a web-accessible directory</li>
+        <li>Open <code>index.html</code> in a web browser</li>
+        <li>Database will auto-seed on first load</li>
+        <li>No server setup required</li>
+      </ol>
+
+      <h3>Initial Setup</h3>
+      <p>
+        On first load, the application automatically seeds the database with:
+      </p>
+      <ul>
+        <li>8 Kenyatta University Faculties</li>
+        <li>Multiple courses per faculty</li>
+        <li>Course units and modules</li>
+        <li>5 Sample documents</li>
+      </ul>
+
+      <h3>Creating Test Accounts</h3>
+      <p>
+        Use the Sign Up feature to create test accounts. Available roles:
+      </p>
+      <ul>
+        <li><strong>Student:</strong> Can search and download (assigned by default)</li>
+        <li><strong>Lecturer:</strong> Can search, upload, and manage content</li>
+        <li><strong>Admin:</strong> Full system access</li>
+      </ul>
+
+      <p>
+        To change user roles, modify the <code>role</code> field in the users array in localStorage, 
+        or update in <code>attemptSignup()</code> function.
+      </p>
+
+      <h3>Browser Storage Limits</h3>
+      <table>
+        <tr>
+          <th>Browser</th>
+          <th>Storage Limit</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>Chrome</td>
+          <td>10MB</td>
+          <td>Shared with other storage APIs</td>
+        </tr>
+        <tr>
+          <td>Firefox</td>
+          <td>10MB</td>
+          <td>Per domain</td>
+        </tr>
+        <tr>
+          <td>Safari</td>
+          <td>5MB</td>
+          <td>Per domain</td>
+        </tr>
+        <tr>
+          <td>Edge</td>
+          <td>10MB</td>
+          <td>Shared with other storage APIs</td>
+        </tr>
+      </table>
+
+      <h3>Production Deployment Recommendations</h3>
+      
+      <div class="warning-box">
+        <strong>⚠️ Important:</strong> This application is designed as a proof-of-concept. For production deployment:
+      </div>
+
+      <ul>
+        <li><strong>Implement Server Backend:</strong> Use Node.js, PHP, Python, or similar for secure data storage</li>
+        <li><strong>Add SSL/HTTPS:</strong> Encrypt all data in transit</li>
+        <li><strong>Secure Authentication:</strong> Implement proper password hashing (bcrypt, Argon2)</li>
+        <li><strong>Database Provider:</strong> Use MongoDB, PostgreSQL, MySQL, or similar</li>
+        <li><strong>File Storage:</strong> Use cloud storage (AWS S3, Google Cloud, Azure)</li>
+        <li><strong>User Permissions:</strong> Implement proper authorization checks on backend</li>
+        <li><strong>Input Validation:</strong> Validate all inputs server-side</li>
+        <li><strong>Security Headers:</strong> Add CORS, CSP, X-Frame-Options headers</li>
+        <li><strong>Audit Logging:</strong> Log all user actions and file access</li>
+      </ul>
+
+      <h3>Troubleshooting</h3>
+      
+      <h4>Storage Full Error</h4>
+      <p><strong>Solution:</strong> Clear browser cache or localStorage. Open DevTools → Application → clear Storage.</p>
+
+      <h4>PDF Not Displaying</h4>
+      <p><strong>Solution:</strong> Some browsers have limited PDF viewer support. Download the file instead.</p>
+
+      <h4>Dark Mode Not Persisting</h4>
+      <p><strong>Solution:</strong> Check if localStorage is enabled. It may be disabled in private/incognito mode.</p>
+
+      <h4>Login Not Working</h4>
+      <p><strong>Solution:</strong> Ensure JavaScript is enabled. Check browser console for errors.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div>
+      <h2>Additional Resources</h2>
+      
+      <h3>Key Technologies</h3>
+      <ul>
+        <li><strong>localStorage API:</strong> https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</li>
+        <li><strong>FileReader API:</strong> https://developer.mozilla.org/en-US/docs/Web/API/FileReader</li>
+        <li><strong>Blob API:</strong> https://developer.mozilla.org/en-US/docs/Web/API/Blob</li>
+        <li><strong>CSS Grid:</strong> https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout</li>
+      </ul>
+
+      <h3>Browser Compatibility</h3>
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Chrome</th>
+          <th>Firefox</th>
+          <th>Safari</th>
+          <th>Edge</th>
+        </tr>
+        <tr>
+          <td>localStorage</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>FileReader API</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>CSS Grid</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>CSS Variables</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+      </table>
+
+      <h3>File Size Statistics</h3>
+      <ul>
+        <li>HTML: ~15 KB</li>
+        <li>JavaScript: ~50 KB</li>
+        <li>CSS: ~40 KB</li>
+        <li>Total (uncompressed): ~105 KB</li>
+        <li>Total (gzipped): ~25 KB</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>
+        <strong>UP-GRADE Student Study Portal</strong><br>
+        Documentation v1.0 | May 2026<br>
+        Built for Kenyatta University<br><br>
+        <em>For questions or support, contact the development team.</em>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

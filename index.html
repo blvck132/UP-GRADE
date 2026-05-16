@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UP-GRADE — Student Study Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ════════════ TOAST ════════════ -->
+<div id="toast"></div>
+
+<!-- ════════════ PDF PREVIEW MODAL ════════════ -->
+<div id="previewModal" class="preview-modal">
+  <div class="preview-content">
+    <div class="preview-header">
+      <h3 id="previewTitle">Document Preview</h3>
+      <button class="preview-close" onclick="closePreview()">✕</button>
+    </div>
+    <div class="preview-body">
+      <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+    </div>
+    <div class="preview-footer">
+      <button class="btn-secondary" onclick="closePreview()">Close</button>
+      <button class="btn-primary" id="previewDownloadBtn" onclick="downloadFromPreview()">⬇ Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOAST ════════════ -->
+<div id="toast"></div>
+
+<!-- ════════════════════════════════
+     PAGE 1: LOGIN
+════════════════════════════════ -->
+<div id="loginPage" class="page active">
+  <div class="login-art">
+    <svg class="art-circles" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="80" stroke-width="1"/>
+      <circle cx="200" cy="200" r="130" stroke-width="1"/>
+      <circle cx="200" cy="200" r="180" stroke-width="1"/>
+      <circle cx="200" cy="200" r="230" stroke-width="0.5"/>
+    </svg>
+    <div class="art-grid"></div>
+    <div class="login-art-tagline">Knowledge · Access · Excellence</div>
+    <div class="login-brand">
+      <div class="logo-mark">U</div>
+      <h1>UP<span>-GRADE</span></h1>
+      <p>Your secure academic resource hub. Access study materials, past papers, and course content — all in one place.</p>
+    </div>
+  </div>
+
+  <div class="login-form-wrap">
+    <div class="login-form-inner">
+      <h2 id="formTitle">Welcome back</h2>
+      <p class="subtitle" id="formSubtitle">Sign in to access your study portal</p>
+
+      <div id="loginFields">
+        <div class="form-group">
+          <label>Student ID / Email</label>
+          <input type="text" id="loginId" placeholder="e.g. STU001 or student@uni.ac.ke" autocomplete="username">
+          <div class="field-error" id="loginIdErr">Please enter your Student ID or Email</div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="current-password">
+          <div class="field-error" id="loginPassErr">Incorrect password. Please try again.</div>
+        </div>
+
+        <button class="btn-primary" onclick="attemptLogin()" id="loginBtn">Sign In to UP-GRADE</button>
+      </div>
+
+      <div id="signupFields" style="display:none;">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name">
+          <div class="field-error" id="signupNameErr"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Student ID</label>
+          <input type="text" id="signupId" placeholder="e.g. STU001">
+          <div class="field-error" id="signupIdErr"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email">
+          <div class="field-error" id="signupEmailErr"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signupPass" placeholder="Create a password">
+          <div class="field-error" id="signupPassErr"></div>
+        </div>
+
+        <button class="btn-primary" onclick="attemptSignup()" id="signupBtn">Create Account</button>
+      </div>
+
+      <div style="text-align:center;margin-top:20px;">
+        <span id="toggleText">Don't have an account? <button class="btn-link" onclick="toggleSignup()">Sign Up</button></span>
+      </div>
+
+      <div class="demo-hint">
+        Efficient vault for students to download and upload revision materials
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE 2: MAIN APP
+════════════════════════════════ -->
+<div id="appPage" class="page">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nm">U</div>
+      UP<span>-GRADE</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="switchTab('searchTab', this)">🔍 Find Materials</button>
+      <button class="nav-tab" onclick="switchTab('uploadTab', this)" id="uploadTabBtn">📤 Upload</button>
+      <button class="nav-tab" onclick="switchTab('adminTab', this)" id="adminTabBtn">⚙ Manage</button>
+    </div>
+    <button class="btn-gold" id="uploadPdfBtn" onclick="openUploadTab()">UPLOAD PDF</button>
+    <button class="btn-gold" id="downloadPdfBtn" onclick="openDownloadTab()">DOWNLOAD PDF</button>
+    <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+    <div class="nav-user">
+      <div class="nav-user-info">
+        <div class="name" id="navName">—</div>
+        <div class="role" id="navRole">—</div>
+      </div>
+      <div class="nav-avatar" id="navAvatar">?</div>
+      <button class="btn-logout" onclick="logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- BODY -->
+  <div class="app-body">
+
+    <!-- ── SEARCH TAB ── -->
+    <div id="searchTab" class="tab-panel active">
+      <div class="search-hero">
+        <h2>Find <em>Study Materials</em> & Past Papers</h2>
+        <p>Select your school, course and unit to discover available resources</p>
+      </div>
+
+      <div class="search-card">
+        <div class="search-grid">
+          <div class="select-wrap">
+            <label>School / Faculty</label>
+            <select id="schoolSelect" onchange="onSchoolChange()">
+              <option value="">— Select School —</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <label>Course / Programme</label>
+            <select id="courseSelect" onchange="onCourseChange()" disabled>
+              <option value="">— Select Course —</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <label>Unit / Module</label>
+            <select id="unitSelect" disabled>
+              <option value="">— Select Unit —</option>
+            </select>
+          </div>
+        </div>
+        <div class="search-actions">
+          <button class="btn-primary" style="width:auto;padding:12px 40px" onclick="searchMaterials()">Search Materials</button>
+          <button class="btn-secondary" onclick="clearSearch()">Clear</button>
+        </div>
+      </div>
+
+      <div id="searchResults"></div>
+    </div>
+
+    <!-- ── UPLOAD TAB ── -->
+    <div id="uploadTab" class="tab-panel">
+      <div class="upload-layout">
+        <div class="upload-form-card">
+          <h2 class="section-title">Upload Material</h2>
+          <p class="section-sub">Add study materials or past papers to the library</p>
+
+          <!-- Drop zone -->
+          <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()"
+               ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+            <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)">
+            <div class="upload-icon">📎</div>
+            <h4>Drop your PDF here</h4>
+            <p>or click to browse · PDF files only · Max 10MB</p>
+          </div>
+
+          <div class="file-preview" id="filePreview">
+            <div class="fp-icon">📄</div>
+            <div class="fp-info">
+              <div class="fp-name" id="fpName">filename.pdf</div>
+              <div class="fp-size" id="fpSize">0 KB</div>
+            </div>
+            <div class="fp-remove" onclick="removeFile()" title="Remove">✕</div>
+          </div>
+
+          <div class="doc-type-toggle">
+            <div class="type-option selected" id="typeStudy" onclick="selectType('study')">
+              <div class="to-icon">📚</div>
+              <div class="to-label">Study Material</div>
+              <div class="to-sub">Notes, textbooks, slides</div>
+            </div>
+            <div class="type-option" id="typePast" onclick="selectType('past')">
+              <div class="to-icon">📝</div>
+              <div class="to-label">Past Paper</div>
+              <div class="to-sub">Exams, CATs, assignments</div>
+            </div>
+          </div>
+
+          <div class="upload-form-grid">
+            <div class="form-group">
+              <label>School</label>
+              <select id="upSchool" onchange="populateUpCourse()">
+                <option value="">Select School</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Course</label>
+              <select id="upCourse" disabled onchange="populateUpUnit()">
+                <option value="">Select Course</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Unit</label>
+              <select id="upUnit" disabled>
+                <option value="">Select Unit</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Year (optional)</label>
+              <input type="text" id="upYear" placeholder="e.g. 2024">
+            </div>
+            <div class="form-group full">
+              <label>Document Title</label>
+              <input type="text" id="upTitle" placeholder="e.g. Introduction to Algorithms - Week 3 Notes">
+            </div>
+          </div>
+
+          <div class="progress-bar" id="uploadProgress">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <button class="btn-primary" onclick="uploadDocument()" style="margin-top:24px">Upload Document</button>
+        </div>
+
+        <!-- Sidebar -->
+        <div>
+          <div class="sidebar-card">
+            <h3>Recent Uploads</h3>
+            <div id="recentUploads">
+              <div class="empty-state" style="padding:32px 16px">
+                <div class="icon">📭</div>
+                <p style="font-size:13px">No uploads yet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ADMIN/MANAGE TAB ── -->
+    <div id="adminTab" class="tab-panel">
+      <div class="stats-row" id="statsRow"></div>
+
+      <div class="admin-layout">
+        <!-- Schools manager -->
+        <div class="admin-card">
+          <h3>🏫 Schools / Faculties</h3>
+          <div class="manage-list" id="schoolsList"></div>
+          <div class="add-row">
+            <input type="text" id="newSchool" placeholder="Add new school...">
+            <button class="btn-gold" onclick="addSchool()">Add</button>
+          </div>
+        </div>
+
+        <!-- Courses manager -->
+        <div class="admin-card">
+          <h3>📋 Courses / Programmes</h3>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Under School</label>
+            <select id="manSchool" onchange="renderCoursesList()" class="form-group select">
+              <option value="">Select School</option>
+            </select>
+          </div>
+          <div class="manage-list" id="coursesList"></div>
+          <div class="add-row">
+            <input type="text" id="newCourse" placeholder="Add new course...">
+            <button class="btn-gold" onclick="addCourse()">Add</button>
+          </div>
+        </div>
+
+        <!-- Units manager -->
+        <div class="admin-card">
+          <h3>📖 Units / Modules</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div class="form-group" style="margin:0">
+              <label>School</label>
+              <select id="manSchoolU" onchange="onManSchoolUChange()" class="form-group select">
+                <option value="">Select School</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label>Course</label>
+              <select id="manCourseU" onchange="renderUnitsList()" disabled class="form-group select">
+                <option value="">Select Course</option>
+              </select>
+            </div>
+          </div>
+          <div class="manage-list" id="unitsList"></div>
+          <div class="add-row">
+            <input type="text" id="newUnit" placeholder="Add new unit...">
+            <button class="btn-gold" onclick="addUnit()">Add</button>
+          </div>
+        </div>
+
+        <!-- All docs manager -->
+        <div class="admin-card">
+          <h3>📂 All Documents</h3>
+          <div class="manage-list" id="allDocsList"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /app-body -->
+</div><!-- /appPage -->
+
+<script src="app.js"></script>
+</body>
+</html>
