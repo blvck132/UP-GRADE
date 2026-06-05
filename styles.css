@@ -166,7 +166,6 @@ body {
   font-size: 14px;
 }
 .btn-link:hover { color: var(--forest-light); }
-.field-error.show { display: block; }
 
 .btn-primary {
   width: 100%; padding: 15px;
@@ -329,6 +328,7 @@ body {
   max-width: 1200px; width: 100%; margin: 0 auto;
   background: rgba(20, 20, 30, 0.6);
   border-radius: 12px;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -344,9 +344,9 @@ body {
 .search-hero h2 {
   font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 700;
   margin-bottom: 12px;
-  color: #e8e8e8;
+  color: #000;
 }
-.search-hero h2 em { color: var(--gold-light); font-style: normal; }
+.search-hero h2 em { color: #000; font-style: normal; }
 .search-hero p { color: rgba(232, 232, 232, 0.6); font-size: 15px; }
 
 .search-card {
@@ -354,6 +354,7 @@ body {
   border: 1.5px solid rgba(200,146,42,0.3);
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   padding: 40px; margin-bottom: 40px;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -443,16 +444,6 @@ body {
   font-size: 11px; color: rgba(13,13,13,0.35);
   font-family: 'DM Mono', monospace;
 }
-
-.btn-download {
-  padding: 7px 16px;
-  background: var(--forest); color: var(--paper);
-  border: none; border-radius: 3px;
-  font-size: 12px; font-weight: 600; cursor: pointer;
-  transition: all .2s; font-family: 'DM Sans', sans-serif;
-  display: flex; align-items: center; gap: 6px;
-}
-.btn-download:hover { background: var(--forest-light); box-shadow: 0 4px 12px rgba(26,74,46,0.25); }
 
 .btn-download {
   padding: 7px 16px;
@@ -665,10 +656,11 @@ body.app-light .btn-theme-toggle:hover { background: rgba(13,13,13,0.12); }
 body.app-light .app-body {
   background: rgba(245,240,232,0.74);
   box-shadow: 0 16px 48px rgba(13,13,13,0.12);
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 }
 
-body.app-light .search-hero h2 { color: var(--ink); }
+body.app-light .search-hero h2 { color: #000; }
 body.app-light .search-hero p { color: rgba(13,13,13,0.66); }
 body.app-light .search-card {
   background: rgba(255,255,255,0.95);
@@ -1095,3 +1087,18 @@ body.dark-mode .btn-download:hover {
   background: var(--forest-light);
   box-shadow: 0 4px 12px rgba(90, 158, 111, 0.3);
 }
+
+/* ══════════════════════════════
+   UTILITY CLASSES FOR INLINE STYLES
+══════════════════════════════ */
+.hidden-field { display: none; }
+.centered-section { text-align: center; margin-top: 20px; }
+.search-btn-custom { width: auto; padding: 12px 40px; }
+.upload-btn-margin { margin-top: 24px; }
+.empty-uploads { padding: 32px 16px; }
+.empty-text { font-size: 13px; }
+.form-group-spacing { margin-bottom: 16px; }
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.no-margin { margin: 0; }
+
+

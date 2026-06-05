@@ -4,33 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UP-GRADE — Student Study Portal</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23c8922a' width='100' height='100'/><text x='50' y='65' font-size='70' font-weight='900' font-family='Playfair Display, serif' fill='%231a4a2e' text-anchor='middle'>U</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ════════════ TOAST ════════════ -->
-<div id="toast"></div>
 
-<!-- ════════════ PDF PREVIEW MODAL ════════════ -->
-<div id="previewModal" class="preview-modal">
-  <div class="preview-content">
-    <div class="preview-header">
-      <h3 id="previewTitle">Document Preview</h3>
-      <button class="preview-close" onclick="closePreview()">✕</button>
-    </div>
-    <div class="preview-body">
-      <iframe id="pdfViewer" src="" frameborder="0"></iframe>
-    </div>
-    <div class="preview-footer">
-      <button class="btn-secondary" onclick="closePreview()">Close</button>
-      <button class="btn-primary" id="previewDownloadBtn" onclick="downloadFromPreview()">⬇ Download</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════ TOAST ════════════ -->
-<div id="toast"></div>
 
 <!-- ════════════════════════════════
      PAGE 1: LOGIN
@@ -73,7 +53,7 @@
         <button class="btn-primary" onclick="attemptLogin()" id="loginBtn">Sign In to UP-GRADE</button>
       </div>
 
-      <div id="signupFields" style="display:none;">
+      <div id="signupFields" class="hidden-field">
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" id="signupName" placeholder="Enter your full name">
@@ -101,7 +81,7 @@
         <button class="btn-primary" onclick="attemptSignup()" id="signupBtn">Create Account</button>
       </div>
 
-      <div style="text-align:center;margin-top:20px;">
+      <div class="centered-section">
         <span id="toggleText">Don't have an account? <button class="btn-link" onclick="toggleSignup()">Sign Up</button></span>
       </div>
 
@@ -111,6 +91,7 @@
     </div>
   </div>
 </div>
+</div><!-- /loginPage -->
 
 <!-- ════════════════════════════════
      PAGE 2: MAIN APP
@@ -154,25 +135,25 @@
         <div class="search-grid">
           <div class="select-wrap">
             <label>School / Faculty</label>
-            <select id="schoolSelect" onchange="onSchoolChange()">
+            <select id="schoolSelect" onchange="onSchoolChange()" title="Select a school">
               <option value="">— Select School —</option>
             </select>
           </div>
           <div class="select-wrap">
             <label>Course / Programme</label>
-            <select id="courseSelect" onchange="onCourseChange()" disabled>
+            <select id="courseSelect" onchange="onCourseChange()" disabled title="Select a course">
               <option value="">— Select Course —</option>
             </select>
           </div>
           <div class="select-wrap">
             <label>Unit / Module</label>
-            <select id="unitSelect" disabled>
+            <select id="unitSelect" disabled title="Select a unit">
               <option value="">— Select Unit —</option>
             </select>
           </div>
         </div>
         <div class="search-actions">
-          <button class="btn-primary" style="width:auto;padding:12px 40px" onclick="searchMaterials()">Search Materials</button>
+          <button class="btn-primary search-btn-custom" onclick="searchMaterials()">Search Materials</button>
           <button class="btn-secondary" onclick="clearSearch()">Clear</button>
         </div>
       </div>
@@ -190,7 +171,7 @@
           <!-- Drop zone -->
           <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()"
                ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-            <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)">
+            <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)" title="Upload a PDF file">
             <div class="upload-icon">📎</div>
             <h4>Drop your PDF here</h4>
             <p>or click to browse · PDF files only · Max 10MB</p>
@@ -221,19 +202,19 @@
           <div class="upload-form-grid">
             <div class="form-group">
               <label>School</label>
-              <select id="upSchool" onchange="populateUpCourse()">
+              <select id="upSchool" onchange="populateUpCourse()" title="Select a school">
                 <option value="">Select School</option>
               </select>
             </div>
             <div class="form-group">
               <label>Course</label>
-              <select id="upCourse" disabled onchange="populateUpUnit()">
+              <select id="upCourse" disabled onchange="populateUpUnit()" title="Select a course">
                 <option value="">Select Course</option>
               </select>
             </div>
             <div class="form-group">
               <label>Unit</label>
-              <select id="upUnit" disabled>
+              <select id="upUnit" disabled title="Select a unit">
                 <option value="">Select Unit</option>
               </select>
             </div>
@@ -251,7 +232,7 @@
             <div class="progress-fill" id="progressFill"></div>
           </div>
 
-          <button class="btn-primary" onclick="uploadDocument()" style="margin-top:24px">Upload Document</button>
+          <button class="btn-primary upload-btn-margin" onclick="uploadDocument()">Upload Document</button>
         </div>
 
         <!-- Sidebar -->
@@ -259,9 +240,9 @@
           <div class="sidebar-card">
             <h3>Recent Uploads</h3>
             <div id="recentUploads">
-              <div class="empty-state" style="padding:32px 16px">
+              <div class="empty-state empty-uploads">
                 <div class="icon">📭</div>
-                <p style="font-size:13px">No uploads yet</p>
+                <p class="empty-text">No uploads yet</p>
               </div>
             </div>
           </div>
@@ -287,9 +268,9 @@
         <!-- Courses manager -->
         <div class="admin-card">
           <h3>📋 Courses / Programmes</h3>
-          <div class="form-group" style="margin-bottom:16px">
+          <div class="form-group form-group-spacing">
             <label>Under School</label>
-            <select id="manSchool" onchange="renderCoursesList()" class="form-group select">
+            <select id="manSchool" onchange="renderCoursesList()" class="form-group select" title="Select a school">
               <option value="">Select School</option>
             </select>
           </div>
@@ -303,16 +284,16 @@
         <!-- Units manager -->
         <div class="admin-card">
           <h3>📖 Units / Modules</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-            <div class="form-group" style="margin:0">
+          <div class="grid-2col">
+            <div class="form-group no-margin">
               <label>School</label>
-              <select id="manSchoolU" onchange="onManSchoolUChange()" class="form-group select">
+              <select id="manSchoolU" onchange="onManSchoolUChange()" class="form-group select" title="Select a school">
                 <option value="">Select School</option>
               </select>
             </div>
-            <div class="form-group" style="margin:0">
+            <div class="form-group no-margin">
               <label>Course</label>
-              <select id="manCourseU" onchange="renderUnitsList()" disabled class="form-group select">
+              <select id="manCourseU" onchange="renderUnitsList()" disabled class="form-group select" title="Select a course">
                 <option value="">Select Course</option>
               </select>
             </div>
@@ -338,3 +319,5 @@
 <script src="app.js"></script>
 </body>
 </html>
+
+
